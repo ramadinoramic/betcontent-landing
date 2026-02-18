@@ -28,12 +28,12 @@ function ItemList({ items, type }) {
         <div className={`w-7 h-7 rounded-lg ${iconBg} flex items-center justify-center`}>
           <span className={`text-${color} text-[13px] font-bold`}>{icon}</span>
         </div>
-        <p className={`font-display text-[14px] font-bold text-${color} uppercase tracking-wider`}>
+        <p className={`font-display text-[13px] sm:text-[14px] font-bold text-${color} uppercase tracking-wider`}>
           {isGood ? "With BetContent" : "Without BetContent"}
         </p>
       </div>
       {items.map((item, i) => (
-        <div key={i} className={`flex gap-3 p-[13px_16px] rounded-xl ${bg} border ${border} mb-2`}>
+        <div key={i} className={`flex gap-3 p-[12px_14px] sm:p-[13px_16px] rounded-xl ${bg} border ${border} mb-2`}>
           <div className={`w-5 h-5 rounded-md ${iconBg} text-${color} flex items-center justify-center flex-shrink-0 text-[10px] font-extrabold mt-[1px]`}>
             {icon}
           </div>
@@ -49,14 +49,15 @@ function ItemList({ items, type }) {
 
 export default function ProblemSolution() {
   return (
-    <ScrollSection id="how-it-works" className="relative z-[1] max-w-[1100px] mx-auto px-7 py-[72px]">
-      <div className="text-center mb-14">
+    <ScrollSection id="how-it-works" className="relative z-[1] max-w-[1100px] mx-auto px-4 sm:px-7 py-14 sm:py-[72px]">
+      <div className="text-center mb-10 sm:mb-14">
         <p className="font-display text-[11px] font-bold text-brand-400 uppercase tracking-[0.14em] mb-2.5">Why BetContent.ai</p>
-        <h2 className="font-display text-[36px] font-extrabold text-gray-50 tracking-[-0.025em]">
+        <h2 className="font-display text-[clamp(24px,5vw,36px)] font-extrabold text-gray-50 tracking-[-0.025em]">
           Your current workflow is broken
         </h2>
       </div>
-      <div className="grid grid-cols-2 gap-14">
+      {/* 1 stupac na mobitelu, 2 stupca na desktopu */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-14">
         <ItemList items={problems} type="problem" />
         <ItemList items={solutions} type="solution" />
       </div>

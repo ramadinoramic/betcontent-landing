@@ -11,16 +11,17 @@ export default function Pricing() {
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <ScrollSection id="pricing" className="relative z-[1] max-w-[1100px] mx-auto px-7 py-[72px]">
-      <div className="text-center mb-14">
+    <ScrollSection id="pricing" className="relative z-[1] max-w-[1100px] mx-auto px-4 sm:px-7 py-14 sm:py-[72px]">
+      <div className="text-center mb-10 sm:mb-14">
         <p className="font-display text-[11px] font-bold text-brand-400 uppercase tracking-[0.14em] mb-2.5">Pricing</p>
-        <h2 className="font-display text-[36px] font-extrabold text-gray-50 tracking-[-0.025em] mb-2">
+        <h2 className="font-display text-[clamp(22px,4vw,36px)] font-extrabold text-gray-50 tracking-[-0.025em] mb-2">
           One article costs €30 from a writer.
         </h2>
         <p className="text-[14px] text-gray-600">With BetContent, you get 100 for €29.</p>
       </div>
 
-      <div className="grid grid-cols-3 gap-3.5 max-w-[880px] mx-auto">
+      {/* 1 stupac mobile → 3 desktop, Pro kartica ide prva na mobitelu */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 max-w-[880px] mx-auto">
         {tiers.map((t) => (
           <div
             key={t.name}
@@ -30,13 +31,15 @@ export default function Pricing() {
               background: t.pop
                 ? "linear-gradient(160deg, rgba(52,211,153,0.35), rgba(5,150,105,0.06))"
                 : "transparent",
+              // Pro kartica ide na vrh na mobitelu
+              order: t.pop ? -1 : 0,
             }}
           >
             <div
               className="h-full flex flex-col"
               style={{
                 borderRadius: t.pop ? 18 : 20,
-                padding: "32px 24px",
+                padding: "28px 22px",
                 background: t.pop ? "#070b09" : "rgba(255,255,255,0.012)",
                 border: t.pop ? "none" : "1px solid rgba(255,255,255,0.04)",
               }}
@@ -48,14 +51,14 @@ export default function Pricing() {
                 </div>
               )}
               <h3 className="font-display text-[19px] font-bold text-gray-50 mb-[3px]">{t.name}</h3>
-              <p className="text-[12px] text-gray-600 mb-[18px]">{t.desc}</p>
-              <div className="mb-[22px]">
-                <span className="font-display text-[44px] font-extrabold text-gray-50">€{t.price}</span>
+              <p className="text-[12px] text-gray-600 mb-[16px]">{t.desc}</p>
+              <div className="mb-[18px]">
+                <span className="font-display text-[40px] sm:text-[44px] font-extrabold text-gray-50">€{t.price}</span>
                 <span className="text-[13px] text-gray-700 ml-[3px]">{t.per}</span>
               </div>
               <button
                 onClick={() => scrollTo("waitlist")}
-                className="w-full py-3.5 rounded-xl text-[13px] font-bold font-display mb-6 cursor-pointer transition-all"
+                className="w-full py-3 sm:py-3.5 rounded-xl text-[13px] font-bold font-display mb-5 cursor-pointer transition-all"
                 style={{
                   background: t.pop ? "linear-gradient(135deg, #059669, #10b981)" : "rgba(255,255,255,0.04)",
                   color: t.pop ? "#fff" : "#9ca3af",
